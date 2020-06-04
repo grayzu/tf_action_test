@@ -1,17 +1,3 @@
-terraform {
-  backend "remote" {
-    organization = "OSS-integrations"
-
-    workspaces {
-      name = "basic-demo"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_resource_group" "demo01" {
   name     = "PP-RedisEnt-test"
   location = "eastus2"
