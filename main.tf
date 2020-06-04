@@ -10,8 +10,6 @@ terraform {
 
 provider "azurerm" {
   features {}
-
-  version = "~>2.0.0"
 }
 
 resource "azurerm_resource_group" "demo01" {
