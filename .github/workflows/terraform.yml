@@ -10,6 +10,12 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
+    
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZ_CL_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZ_CL_PWD }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUB_AMEPM }}
+      ARM_TENANT_ID: ${{ secrets.AZ_TENANT_MS }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
