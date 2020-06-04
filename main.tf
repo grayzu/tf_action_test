@@ -3,7 +3,7 @@ terraform {
     organization = "OSS-integrations"
 
     workspaces {
-      name = "personal-pg"
+      name = "basic-demo"
     }
   }
 }
