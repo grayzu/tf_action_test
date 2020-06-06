@@ -18,12 +18,13 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZ_CL_PWD }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUB_AMEPM }}
       ARM_TENANT_ID: ${{ secrets.AZ_TENANT_MS }}
-
+      TF_VAR_RG_NAME: "PP-RedisEnt-test"
+      TF_VAR_ACR_NAME: "ameDemoRegistry01"
+      
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-        working-directory: infra
 
     # Checkout the repository to the GitHub Actions runner
     steps:
@@ -38,14 +39,14 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init ./infra
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan ./infra
     
       # On push to master, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve ./infra
