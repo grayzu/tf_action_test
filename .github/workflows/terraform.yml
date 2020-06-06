@@ -1,9 +1,5 @@
 name: 'Simple_Azure_demo'
 
-defaults:
-  run:
-    working-directory: infra
-
 on:
   push:
     branches:
@@ -27,6 +23,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: infra
 
     # Checkout the repository to the GitHub Actions runner
     steps:
